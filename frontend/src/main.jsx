@@ -24,6 +24,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             {/* públicas */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/registro" element={<RegisterPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+
 
             {/* privadas */}
             <Route element={<PrivateRoute />}>

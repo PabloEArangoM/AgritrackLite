@@ -1,0 +1,288 @@
+:root {
+    --green-main: #2d7a46;
+    --green-dark: #154d2f;
+    --green-soft: #e1f0e6;
+    --danger: #d9534f;
+    --bg-light: #f3f4f6;
+    --text-main: #111827;
+    --text-muted: #6b7280;
+    --card-bg: #ffffff;
+}
+
+/* Tema oscuro (ya usas body.dataset.theme en ThemeContext) */
+body[data-theme="dark"] {
+    --bg-light: #020617;
+    --card-bg: #111827;
+    --text-main: #443f3f;
+    --text-muted: #ffffff;
+    --green-soft: #1f2937;
+}
+
+/* Fondo general con imagen */
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text-main);
+    background:
+        linear-gradient(135deg, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.25)),
+        url("/fondo-campo.jpg") center/cover fixed no-repeat;
+}
+
+/* Contenedor principal de la app */
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+/* “Tarjeta grande” que envuelve sidebar + contenido */
+.app-shell-inner {
+    display: flex;
+    flex: 1;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-main);
+    border-radius: 16px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+}
+
+/* versión oscura */
+body[data-theme="dark"] .app-shell-inner {
+    background: rgba(15, 23, 42, 0.94);
+    color: var(--text-main);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 230px;
+    background: var(--green-soft);
+    padding: 1.25rem;
+    box-sizing: border-box;
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body[data-theme="dark"] .sidebar {
+    background: #020617;
+    border-right-color: #111827;
+}
+
+.sidebar-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--green-dark);
+}
+
+body[data-theme="dark"] .sidebar-title {
+    color: #f9fafb;
+}
+
+.sidebar-nav {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+/* Links del menú */
+.sidebar-link {
+    display: block;
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--green-dark);
+    font-size: 0.93rem;
+    transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+.sidebar-link:hover {
+    background: rgba(45, 122, 70, 0.12);
+    transform: translateX(2px);
+}
+
+.sidebar-link--active {
+    background: var(--green-main);
+    color: #ffffff;
+}
+
+.sidebar-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Botón cerrar sesión */
+.btn-logout {
+    margin-top: 0.6rem;
+    background: var(--danger);
+    color: #fff;
+    border: none;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btn-logout:hover {
+    filter: brightness(1.05);
+}
+
+/* Contenido principal */
+.main-content {
+    flex: 1;
+    padding: 1.5rem 1.75rem;
+    background: var(--bg-light);
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* Títulos */
+h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+/* “Cards” reutilizables (ya tienes algunos inline, esto ayuda al resto) */
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Inputs y selects */
+input,
+select,
+textarea {
+    font-family: inherit;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    background: #f9fafb;
+    color: var(--text-main);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* Foco igual que antes */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid rgba(45, 122, 70, 0.5);
+    border-color: var(--green-main);
+}
+
+/* 🔦 Versión modo oscuro: inputs más oscuros y texto claro */
+body[data-theme="dark"] input,
+body[data-theme="dark"] select,
+body[data-theme="dark"] textarea {
+    background: #020617;
+    /* fondo oscuro */
+    border-color: #374151;
+    /* borde gris oscuro */
+    color: #e5e7eb;
+    /* texto clarito */
+}
+
+body[data-theme="dark"] input::placeholder,
+body[data-theme="dark"] textarea::placeholder {
+    color: #9ca3af;
+    /* gris medio, se ve pero no molesta */
+}
+
+/* Botones por defecto */
+button {
+    font-family: inherit;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background: var(--green-main);
+    color: #fff;
+    transition: transform 0.08s, box-shadow 0.08s, filter 0.1s;
+}
+
+button:hover {
+    filter: brightness(1.05);
+    box-shadow: 0 0 0 2px rgba(45, 122, 70, 0.2);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button.btn-secondary {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+button.btn-danger {
+    background: var(--danger);
+}
+
+/* Tablas */
+table {
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+th,
+td {
+    padding: 0.45rem 0.6rem;
+}
+
+th {
+    text-align: left;
+    border-bottom: 1px solid #d1d5db;
+}
+
+tbody tr:nth-child(odd) {
+    background: rgba(148, 163, 184, 0.05);
+}
+
+/* Tarjetas kanban */
+.kanban-col {
+    background: #e5e7eb;
+    border-radius: 12px;
+    padding: 0.75rem;
+}
+
+body[data-theme="dark"] .kanban-col {
+    background: #020617;
+}
+
+.kanban-card {
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+body[data-theme="dark"] .kanban-card {
+    background: #111827;
+    border-color: #374151;
+}
+
+.auth-subtext {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* En modo oscuro que sea más visible */
+body[data-theme="dark"] .auth-subtext {
+    color: #e5e7eb;
+}
